@@ -67,6 +67,20 @@ let str4 = "briefly"
 let str5 = "Offensive Word"
 
 // START
+String.prototype.bowlderize = function() {
+  let newString = "";
+  for(let i = 0; i < this.length; i++){
+    let letter = this.charAt(i);
+    if(letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u'
+    || letter == 'A' || letter == 'E' || letter == 'I' || letter == 'O' || letter == 'U'){
+      newString += "*";
+    }
+    else{
+      newString += letter;
+    }
+  }
+  return newString;
+}
 // END
 
 assert.equal(str1.bowlderize(), "*bc")
