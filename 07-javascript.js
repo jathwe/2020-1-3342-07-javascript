@@ -89,8 +89,6 @@ assert.equal(str3.bowlderize(), "b**f")
 assert.equal(str4.bowlderize(), "br**fly")
 assert.equal(str5.bowlderize(), "*ff*ns*v* W*rd")
 
-if (false) {
-
 ///////////////// Section 2
 //
 // Write a constructor function and any associated code
@@ -109,6 +107,15 @@ if (false) {
 //
 
 // START
+class Person {
+  constructor(newName, newTitle){
+    this.name = newName,
+    this.title = newTitle,
+    this.fullName = function(){
+      return this.title + " " + this.name;
+    }
+  }
+}
 // END
 
 p = new Person("Betty", "Ms")
@@ -116,6 +123,7 @@ assert.equal(p.name,  "Betty")
 assert.equal(p.title, "Ms")
 assert.equal(p.fullName(), "Ms Betty")
 
+if (false) {
 
 ///////////////// Section 3
 //
