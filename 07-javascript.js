@@ -107,13 +107,11 @@ assert.equal(str5.bowlderize(), "*ff*ns*v* W*rd")
 //
 
 // START
-class Person {
-  constructor(newName, newTitle){
-    this.name = newName,
-    this.title = newTitle,
-    this.fullName = function(){
-      return this.title + " " + this.name;
-    }
+function Person(newName, newTitle){
+  this.name = newName,
+  this.title = newTitle,
+  this.fullName = function(){
+    return this.title + " " + this.name;
   }
 }
 // END
@@ -137,6 +135,15 @@ if (false) {
 //
 
 //START
+class Person1{
+  constructor(newName, newTitle){
+    this.name = newName,
+    this.title = newTitle,
+    this.fullName = function(){
+      return this.title + " " + this.name;
+    }
+  }
+}
 // END
 
 p = new Person1("Fred", "Mr")
