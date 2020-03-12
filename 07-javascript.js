@@ -121,8 +121,6 @@ assert.equal(p.name,  "Betty")
 assert.equal(p.title, "Ms")
 assert.equal(p.fullName(), "Ms Betty")
 
-if (false) {
-
 ///////////////// Section 3
 //
 // Reimplement the code from section 2 using the ES2015
@@ -152,7 +150,6 @@ assert.equal(p.title, "Mr")
 assert.equal(p.fullName(), "Mr Fred")
 assert(p.hasOwnProperty("name"))
 
-
 ///////////////// Section 4
 //
 // The built-in String class defines an instance method
@@ -172,6 +169,18 @@ assert(p.hasOwnProperty("name"))
 // Penalty: -3 layout, -3 naming
 
 //START
+function bugs(func) {
+  let save = String.prototype.sup
+  String.prototype.sup = function(){
+    return "What's up, " + this + "?"
+  }
+  try{
+    func();
+  }
+  finally{
+    String.prototype.sup = save;
+  }
+}
 //END
 
 assert.equal("doc".sup(), "<sup>doc</sup>")
@@ -202,6 +211,7 @@ assert.throws(
 
 assert.equal("DOC".sup(), "<sup>DOC</sup>")
 
+if (false) {
 
 ///////////////// Section 5
 //
