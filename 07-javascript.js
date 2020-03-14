@@ -227,10 +227,9 @@ assert.equal("DOC".sup(), "<sup>DOC</sup>")*/
 
 function myNew(constructor, ...args) {
   //START
-  let newObj = {} 
-  newObj.__proto__ = constructor.prototype
-  newObj.constructor(...args)
-  return newObj
+  myNew.this = constructor.prototype
+  myNew.this.constructor(...args)
+  return myNew.this;
   //END
 }
 
