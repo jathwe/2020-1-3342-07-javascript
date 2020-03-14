@@ -163,19 +163,24 @@ assert(p.hasOwnProperty("name"))
 // Penalty: -3 layout, -3 naming
 
 //START
-tempFunction = String.prototype.sup()
-function bugs(func) {
-    this.sup = function(){
-      return `What's up ${this}?`
-    }
-    try{
-      this.sup
-    }
-    finally{
-      this.sup = tempFunction
-    }
-}
+function bugs(callback) {
 
+  callback = function(){
+    String.prototype.sup = function(){
+      return `<sup>${this}</sup>`
+    }
+  }
+
+  try{
+    String.prototype.sup = function(){
+      return `What's up, ${this}?`
+    }
+  }
+  
+  finally{
+    callback()
+  }
+}
 
 //END
 
@@ -186,7 +191,6 @@ bugs(function() {
 })
 assert.equal("DOC".sup(), "<sup>DOC</sup>")
 
-
 // this second test makes sure that you are correctly
 // restoring the `sup()` function if the function passed
 // to `bugs()` throws an exception. You might need to
@@ -194,7 +198,7 @@ assert.equal("DOC".sup(), "<sup>DOC</sup>")
 // `finally` clause.
 
 
-/*assert.throws(
+assert.throws(
   () => {
   bugs(function() {
     throw new Error("boom")
@@ -205,7 +209,7 @@ assert.equal("DOC".sup(), "<sup>DOC</sup>")
   }
 )
 
-assert.equal("DOC".sup(), "<sup>DOC</sup>")*/
+assert.equal("DOC".sup(), "<sup>DOC</sup>")
 
 
 ///////////////// Section 5
