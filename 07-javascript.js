@@ -211,8 +211,6 @@ assert.throws(
 
 assert.equal("DOC".sup(), "<sup>DOC</sup>")
 
-if (false) {
-
 ///////////////// Section 5
 //
 // We talked about what the `new` operator does.
@@ -232,6 +230,9 @@ if (false) {
 
 function myNew(constructor, ...args) {
   //START
+  this.__proto__ = Object.create(constructor.prototype)
+  constructor.call(this, ...args)
+  return this
   //END
 }
 
@@ -247,4 +248,3 @@ box = myNew(Box, 5, 7)
 assert.equal(box.w, 5)
 assert.equal(box.h, 7)
 assert.equal(box.area(), 35)
-}
